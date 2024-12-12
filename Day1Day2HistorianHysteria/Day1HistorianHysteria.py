@@ -42,8 +42,8 @@ Input: input.txt (1000 locations across 2 lists)
 
 - 
 """
-PRACTICE_INPUT_FILE = "practice_input.txt"
-INPUT_FILE = "input.txt"
+PRACTICE_INPUT_FILE = "Day 1 + Day 2 Historian Hysteria\practice_input.txt"
+INPUT_FILE = "Day 1 + Day 2 Historian Hysteria\input.txt"
 
 def convertToPairs(inputfile):
 
@@ -69,9 +69,9 @@ def seperateAndOrderPairs(pairs):
 
     list1.sort()
     list2.sort()
-    sorted_pairs = list(zip(list1, list2))
+    #sorted_pairs = list(zip(list1, list2))
     
-    return sorted_pairs
+    return list1, list2
 
 def getPairDistance(num1, num2):
     return abs(num1 - num2)
@@ -82,8 +82,8 @@ def getTotalDistance(distances):
 def solveDay1(input):
 
     pairs = convertToPairs(input)
-    sorted_pairs= seperateAndOrderPairs(pairs)
-    distances = [getPairDistance(pair[0], pair[1]) for pair in sorted_pairs]
+    list1, list2 = seperateAndOrderPairs(pairs)
+    distances = [getPairDistance(list1[i], list2[i]) for i in range(0, len(list1))]
     total_distance = getTotalDistance(distances)
 
     return total_distance
