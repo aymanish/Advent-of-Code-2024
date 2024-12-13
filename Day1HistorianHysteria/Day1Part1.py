@@ -42,14 +42,14 @@ Input: input.txt (1000 locations across 2 lists)
 
 - 
 """
-PRACTICE_INPUT_FILE = "Day 1 + Day 2 Historian Hysteria\practice_input.txt"
-INPUT_FILE = "Day 1 + Day 2 Historian Hysteria\input.txt"
+PRACTICE_INPUT_FILE = "Day1HistorianHysteria\practice_input.txt"
+INPUT_FILE = "Day1HistorianHysteria\input.txt"
 
 def convertToPairs(inputfile):
 
     pairs = []
 
-    input = open(INPUT_FILE, "r")
+    input = open(inputfile, "r")
 
     for line in input:
 
@@ -67,8 +67,8 @@ def seperateAndOrderPairs(pairs):
         list1.append(int(pair[0]))
         list2.append(int(pair[1]))
 
-    list1.sort()
-    list2.sort()
+    #list1.sort()
+    #list2.sort()
     #sorted_pairs = list(zip(list1, list2))
     
     return list1, list2
@@ -79,15 +79,23 @@ def getPairDistance(num1, num2):
 def getTotalDistance(distances):
     return sum(distances)
 
-def solveDay1(input):
-
+def getDay1Lists(input):
     pairs = convertToPairs(input)
     list1, list2 = seperateAndOrderPairs(pairs)
+
+    return list1, list2
+
+def solveDay1(input):
+
+    list1, list2 = getDay1Lists(input)
+    list1.sort()
+    list2.sort()
     distances = [getPairDistance(list1[i], list2[i]) for i in range(0, len(list1))]
     total_distance = getTotalDistance(distances)
 
     return total_distance
 
 print(solveDay1(INPUT_FILE))
+print(solveDay1(PRACTICE_INPUT_FILE))
 
 # Answer is 1651298
